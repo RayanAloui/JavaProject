@@ -1,13 +1,14 @@
+package tn.esprit.gestionzoo.entities;
+
 public class Zoo {
 
-    Animal[] animals;
-    String name;
-    String city;
-    int nbrAnimals;
-    static final int NUMBER_OF_CAGES = 25;
+    private Animal[] animals;
+    private String name;
+    private String city;
+    private int nbrAnimals;
+    public static final int NUMBER_OF_CAGES = 25;
 
     public Zoo(){
-        this.animals = new Animal[NUMBER_OF_CAGES];
     }
 
     public Zoo(String name,String city){
@@ -16,8 +17,43 @@ public class Zoo {
         this.city=city;
     }
 
+    public Animal[] getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(Animal[] animals) {
+        this.animals = animals;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if(name.isBlank())
+            System.out.println("Le nom d'un Zoo ne doit pas etre vide !");
+        else
+            this.name = name;
+    }
+
+    public String getCity(){
+        return city;
+    }
+
+    public void setCity(String city){
+        this.city=city;
+    }
+
+    public int getNbrAnimals() {
+        return nbrAnimals;
+    }
+
+    public void setNbrAnimals(int nbrAnimals) {
+        this.nbrAnimals = nbrAnimals;
+    }
+
     public void displayZoo(){
-        System.out.println("Zoo : ");
+        System.out.println("tn.esprit.gestionzoo.entities.Zoo : ");
         System.out.println("Name : "+name);
         System.out.println("City : "+city);
         System.out.println("NbrCages : "+NUMBER_OF_CAGES);
@@ -29,8 +65,8 @@ public class Zoo {
         return "Name: " + name + ", City: " + city + ", N° Cages: " + NUMBER_OF_CAGES + ", N° Animals: " + nbrAnimals;
     }
 
-    boolean addAnimal(Animal animal) {
-        if (nbrAnimals < NUMBER_OF_CAGES && searchAnimal(animal) == -1) {
+    public boolean addAnimal(Animal animal) {
+        if (!isZooFull() && searchAnimal(animal) == -1) {
             animals[nbrAnimals] = animal;
             nbrAnimals++;
             return true;
@@ -39,7 +75,7 @@ public class Zoo {
     }
 
     //2ème façon
-    /*boolean addAnimal(Animal animal)
+    /*public boolean addAnimal(Animal animal)
     {
         if(isZooFull())
         {
@@ -57,17 +93,17 @@ public class Zoo {
         return true;
     }*/
 
-    int searchAnimal(Animal animal){
+    public int searchAnimal(Animal animal){
         for(int i=0; i<nbrAnimals ; i++)
         {
-            if (animals[i].name.equals(animal.name)) {
+            if (animals[i].getName().equals(animal.getName())) {
                 return i;
             }
         }
         return -1;
     }
 
-    boolean removeAnimal(Animal animal){
+    public boolean removeAnimal(Animal animal){
         int index = searchAnimal(animal);
         if(index != -1 ){
             for(int i=index; i<nbrAnimals -1 ; i++){
@@ -80,12 +116,12 @@ public class Zoo {
         return false;
     }
 
-    boolean isZooFull()
+    public boolean isZooFull()
     {
         return nbrAnimals >= NUMBER_OF_CAGES;
     }
 
-    static Zoo comparer(Zoo z1,Zoo z2){
+    public static Zoo comparer(Zoo z1,Zoo z2){
         if(z1.nbrAnimals > z2.nbrAnimals)
         {
             return z1;
@@ -93,7 +129,7 @@ public class Zoo {
         return z2;
     }
 
-    void displayAnimals(){
+    public void displayAnimals(){
         System.out.println("Animals : ");
         for(int i=0; i<nbrAnimals ; i++){
             System.out.println(animals[i]);

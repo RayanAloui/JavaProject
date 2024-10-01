@@ -1,3 +1,8 @@
+package tn.esprit.gestionzoo.main;
+
+import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.Zoo;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -54,9 +59,9 @@ public class Main {
 
         myZoo.displayAnimals();
 
-        //System.out.println(Zoo.comparer(myZoo,zoo));
+        //System.out.println(tn.esprit.gestionzoo.entities.Zoo.comparer(myZoo,zoo));
         Zoo zooLePlusGrand = Zoo.comparer(myZoo, zoo);
-        System.out.println("Le zoo avec le plus d'animaux est: " + zooLePlusGrand.name);
+        System.out.println("Le zoo avec le plus d'animaux est: " + zooLePlusGrand.getName());
 
         boolean zooPlein = myZoo.isZooFull();
         System.out.println("Est ce que le zoo est plein ? " + zooPlein);
