@@ -68,6 +68,7 @@ public class Main {
         //Partie héritage
 
         // Création des instances avec constructeurs par défaut
+        /*
         Aquatic aquaticAnimal = new Aquatic();
         Terrestrial terrestrialAnimal = new Terrestrial();
         Dolphin dolphin = new Dolphin();
@@ -94,5 +95,48 @@ public class Main {
         aquaticAnimalP.swim();  // Appel à la méthode swim() de Aquatic
         dolphinP.swim();        // Appel à la méthode swim() de Dolphin
         penguinP.swim();        // Appel à la méthode swim() hérité de Aquatic
+
+         */
+
+        //Partie polymorphisme
+
+        Dolphin d = new Dolphin();
+        d.setSwimmingSpeed(24.5f);
+        Dolphin d1 = new Dolphin();
+        d1.setSwimmingSpeed(21.8f);
+        Dolphin d2 = new Dolphin();
+        d2.setSwimmingSpeed(20.3f);
+        Dolphin d3 = new Dolphin();
+        d3.setSwimmingSpeed(22.6f);
+
+        myZoo.addAquaticAnimal(d);
+        myZoo.addAquaticAnimal(d1);
+        myZoo.addAquaticAnimal(d2);
+        myZoo.addAquaticAnimal(d3);
+
+        Penguin p = new Penguin();
+        p.setSwimmingDepth(24.6f);
+        Penguin p1 = new Penguin();
+        p1.setSwimmingDepth(29.6f);
+        Penguin p2 = new Penguin();
+        p2.setSwimmingDepth(219.6f);
+        Penguin p3 = new Penguin();
+        p1.setSwimmingDepth(2.6f);
+
+        myZoo.addAquaticAnimal(p);
+        myZoo.addAquaticAnimal(p1);
+        myZoo.addAquaticAnimal(p2);
+        myZoo.addAquaticAnimal(p3);
+
+        myZoo.addAquaticAnimal(new Penguin());
+
+        for (int i = 0; i < myZoo.getNbrAquatics(); i++) {
+            Aquatic[] aquatics = myZoo.getAquaticAnimals();
+            aquatics[i].swim();
+        }
+
+        System.out.println(myZoo.maxPenguinSwimmingDepth());
+        System.out.println(myZoo.averageSwimmingSpeed());
+        myZoo.displayNumberOfAquaticsByType();
     }
 }
