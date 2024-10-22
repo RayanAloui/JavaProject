@@ -1,8 +1,10 @@
 package tn.esprit.gestionzoo.entities;
 
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
+
 public class Zoo {
 
-    public static final int NUMBER_OF_CAGES = 25;
+    public static final int NUMBER_OF_CAGES = 3;
     private Animal[] animals;
     private Aquatic[] aquaticAnimals;
     private String name;
@@ -84,13 +86,14 @@ public class Zoo {
         return "Name: " + name + ", City: " + city + ", N° Cages: " + NUMBER_OF_CAGES + ", N° Animals: " + nbrAnimals;
     }
     
-    public boolean addAnimal(Animal animal) {
-        if (!isZooFull() && searchAnimal(animal) == -1) {
-            animals[nbrAnimals] = animal;
-            nbrAnimals++;
-            return true;
+    public void addAnimal(Animal animal) throws ZooFullException {
+        if(searchAnimal(animal) != -1)
+            System.out.println("This animal already exists !");
+        if(isZooFull()) {
+            throw new ZooFullException("The Zoo is full !");
         }
-        return false;
+        animals[nbrAnimals]=animal;
+        nbrAnimals++;
     }
 
     //2ème façon

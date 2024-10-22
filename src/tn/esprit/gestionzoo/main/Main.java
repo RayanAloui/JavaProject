@@ -1,11 +1,13 @@
 package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.*;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
 
 public class Main {
     public static void main(String[] args) {
 
-        Animal lion = new Animal("xxxx","Lion",8,true);
+        /*Animal lion = new Animal("xxxx","Lion",8,true);
 
         Animal tigre = new Animal("xxxxx","Tigre",10,true);
 
@@ -63,7 +65,7 @@ public class Main {
         System.out.println("Le zoo avec le plus d'animaux est: " + zooLePlusGrand.getName());
 
         boolean zooPlein = myZoo.isZooFull();
-        System.out.println("Est ce que le zoo est plein ? " + zooPlein);
+        System.out.println("Est ce que le zoo est plein ? " + zooPlein); */
 
         //Partie héritage
 
@@ -99,6 +101,105 @@ public class Main {
          */
 
         //Partie polymorphisme
+
+        /*Dolphin d = new Dolphin();
+        d.setSwimmingSpeed(24.5f);
+        Dolphin d1 = new Dolphin();
+        d1.setSwimmingSpeed(21.8f);
+        Dolphin d2 = new Dolphin();
+        d2.setSwimmingSpeed(20.3f);
+        Dolphin d3 = new Dolphin();
+        d3.setSwimmingSpeed(22.6f);
+
+        myZoo.addAquaticAnimal(d);
+        myZoo.addAquaticAnimal(d1);
+        myZoo.addAquaticAnimal(d2);
+        myZoo.addAquaticAnimal(d3);
+
+        Penguin p = new Penguin();
+        p.setSwimmingDepth(24.6f);
+        Penguin p1 = new Penguin();
+        p1.setSwimmingDepth(29.6f);
+        Penguin p2 = new Penguin();
+        p2.setSwimmingDepth(219.6f);
+        Penguin p3 = new Penguin();
+        p1.setSwimmingDepth(2.6f);
+
+        myZoo.addAquaticAnimal(p);
+        myZoo.addAquaticAnimal(p1);
+        myZoo.addAquaticAnimal(p2);
+        myZoo.addAquaticAnimal(p3);
+
+        myZoo.addAquaticAnimal(new Penguin());
+
+        for (int i = 0; i < myZoo.getNbrAquatics(); i++) {
+            Aquatic[] aquatics = myZoo.getAquaticAnimals();
+            aquatics[i].swim();
+        }
+
+        System.out.println(myZoo.maxPenguinSwimmingDepth());
+        System.out.println(myZoo.averageSwimmingSpeed());
+        myZoo.displayNumberOfAquaticsByType();*/
+
+        //Exceptions
+        Animal tigre = new Animal();
+        tigre.setName("tigre");
+        try{
+            tigre.setAge(8);
+        }catch(InvalidAgeException e){
+            System.out.println(e.getMessage());
+        }
+        tigre.setFamily("Cats");
+        tigre.setMammal(true);
+
+        Zoo myZoo = new Zoo("Belvider park", "Bardo");
+        Zoo notMyZoo = new Zoo("Friguia park","Hammamet");
+
+        Animal cat = new Animal("Cats","Tom",4,true);
+
+        try{
+            myZoo.addAnimal(tigre);
+        } catch (ZooFullException e){
+            System.out.println(e.getMessage());
+        }finally{
+            System.out.println(myZoo.getName() + " contient " + myZoo.getNbrAnimals() + " animals");
+        }
+
+        try{
+            myZoo.addAnimal(cat);
+        } catch (ZooFullException e){
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println(myZoo.getName() + " contient " + myZoo.getNbrAnimals() + " animals");
+        }
+
+        myZoo.displayAnimals();
+
+        System.out.println(myZoo.searchAnimal(cat));
+        Animal dog = new Animal("Bichon", "Soleil", 2, true);
+        System.out.println(myZoo.searchAnimal(dog));
+
+        myZoo.displayAnimals();
+
+        try{
+            myZoo.addAnimal(dog);
+        } catch (ZooFullException e){
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println(myZoo.getName() + " contient " + myZoo.getNbrAnimals() + " animals");
+        }
+
+        try{
+            myZoo.addAnimal(tigre);
+        } catch (ZooFullException e){
+            System.out.println(e.getMessage());
+        }finally{
+            System.out.println(myZoo.getName() + " contient " + myZoo.getNbrAnimals() + " animals");
+        }
+
+        myZoo.displayAnimals();
+
+        //polymorphisme
 
         Dolphin d = new Dolphin();
         d.setSwimmingSpeed(24.5f);
@@ -138,5 +239,7 @@ public class Main {
         System.out.println(myZoo.maxPenguinSwimmingDepth());
         System.out.println(myZoo.averageSwimmingSpeed());
         myZoo.displayNumberOfAquaticsByType();
+
+
     }
 }
